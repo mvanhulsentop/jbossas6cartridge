@@ -133,7 +133,7 @@ MaxRequestsPerChild  0
 # prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
 #
 #Listen 12.34.56.78:80
-Listen <%= ENV['OPENSHIFT_HTTPD_IP']%>:<%= ENV['OPENSHIFT_HTTPD_PORT'] %>
+Listen <%= ENV['OPENSHIFT_JBOSSAS6_IP']%>:<%= ENV['OPENSHIFT_JBOSSAS6_PORT'] %>
 
 #
 # Dynamic Shared Object (DSO) Support
