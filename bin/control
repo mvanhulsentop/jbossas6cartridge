@@ -5,15 +5,15 @@ PATH=/bin/:/usr/bin:$PATH
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 function start {
-    /usr/sbin/httpd -f $OPENSHIFT_HTTPD_DIR/etc/httpd.conf -k start
+    /usr/sbin/httpd -f $OPENSHIFT_JBOSSAS6_DIR/etc/httpd.conf -k start
 }
 
 function stop {
-    /usr/sbin/httpd -f $OPENSHIFT_HTTPD_DIR/etc/httpd.conf -k stop
+    /usr/sbin/httpd -f $OPENSHIFT_JBOSSAS6_DIR/etc/httpd.conf -k stop
 }
 
 function restart {
-    /usr/sbin/httpd -f $OPENSHIFT_HTTPD_DIR/etc/httpd.conf -k restart
+    /usr/sbin/httpd -f $OPENSHIFT_JBOSSAS6_DIR/etc/httpd.conf -k restart
 }
 
 function catchall {
