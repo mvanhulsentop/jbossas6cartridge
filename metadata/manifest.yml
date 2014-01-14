@@ -1,0 +1,35 @@
+Name: testjboss
+Cartridge-Short-Name: JBossAS6
+Display-Name: JBoss6 Cartridge
+Source-Url: https://github.com/mvanhulsentop/testcart.git
+Description: "A jbossas6 cartridge for development use only."
+Version: '0.1'
+License: "None"
+Vendor: Maarten van Hulsentop
+Cartridge-Version: 0.0.1
+Cartridge-Vendor: mvanhulsentop
+Categories:
+  - service
+  - web_framework
+Provides:
+  - jbossas6
+Cart-Data:
+  - Key: OPENSHIFT_JBOSSAS6
+    Type: environment
+    Description: "An example environment variable using ERB processing"
+Group-Overrides:
+  - components:
+    - httpd
+Subscribes:
+  set-db-connection-info:
+    Type: "NET_TCP:db:connection-info"
+    Required: false
+Endpoints:
+  - Private-IP-Name:   IP
+    Private-Port-Name: PORT
+    Private-Port:      8080
+    Public-Port-Name:  PROXY_PORT
+    Mappings:
+      - Frontend:      ""
+        Backend:       ""
+        Options:       { websockets: false }
