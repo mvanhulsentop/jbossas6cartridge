@@ -4,7 +4,12 @@ echo Setup in $OPENSHIFT_JBOSSAS6_DIR
 cd $OPENSHIFT_JBOSSAS6_DIR
 
 echo Downloading jboss-6.1.0.Final
-wget http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip
+if [ -f $OPENSHIFT_JBOSSAS6_DIR/../jboss-as-distribution-6.1.0.Final.zip ]; then
+  cp $OPENSHIFT_JBOSSAS6_DIR/../jboss-as-distribution-6.1.0.Final.zip $OPENSHIFT_JBOSSAS6_DIR;
+else
+  wget http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip;
+fi
+
 
 unzip -q jboss-as-distribution-6.1.0.Final.zip
 rm jboss-as-distribution-6.1.0.Final.zip
@@ -12,3 +17,10 @@ rm jboss-as-distribution-6.1.0.Final.zip
 mv jboss-6.1.0.Final jboss
 
 chmod 755 jboss/bin/run.sh
+chmod 755 jboss/bin/run.sh
+
+# server.xml location:
+# vars; jboss.web.http.port
+# vars; jboss.bind.address
+sed -i "s/\${jboss.web.http.port}/$OPENSHIFT_JBOSSAS6_HTTP_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/jbossweb.sar/server.xml
+sed -i "s/\${jboss.bind.address}/$OPENSHIFT_JBOSSAS6_IP/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/jbossweb.sar/server.xml
