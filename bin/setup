@@ -25,4 +25,4 @@ chmod 755 jboss/bin/run.sh
 sed -i "s/\${jboss.web.http.port}/$OPENSHIFT_JBOSSAS6_HTTP_PORT/1" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/jbossweb.sar/server.xml
 sed -i "s/\${jboss.bind.address}/$OPENSHIFT_JBOSSAS6_IP/1" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/jbossweb.sar/server.xml
 
-sed -i "s/8009/$INTERNAL_AJP_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
+sed -i "s/8009/$OPENSHIFT_JBOSSAS6_INTERNAL_AJP_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml

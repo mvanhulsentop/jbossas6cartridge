@@ -33,6 +33,6 @@ Endpoints:
       - Frontend:      ""
         Backend:       ""
         Options:       { websockets: false }
-  - Private-IP-Name:   INTERNAL_AJP_IP
-    Private-Port-Name: 8019
-    Public-Port-Name:  INTERNAL_AJP_PORT
+  - Private-IP-Name:   IP
+    Private-Port: 8019
+    Private-Port-Name:  INTERNAL_AJP_PORT
