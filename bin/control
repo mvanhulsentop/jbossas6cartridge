@@ -5,7 +5,7 @@ PATH=/bin/:/usr/bin:$PATH
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 function start {
-    /usr/sbin/httpd -f $OPENSHIFT_JBOSSAS6_DIR/etc/httpd.conf -k start
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh &
 }
 
 function stop {

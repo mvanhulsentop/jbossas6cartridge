@@ -1,1 +1,14 @@
+#!/bin/bash -e
 
+echo Setup in $OPENSHIFT_JBOSSAS6_DIR
+cd $OPENSHIFT_JBOSSAS6_DIR
+
+echo Downloading jboss-6.1.0.Final
+wget http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip
+
+unzip -q jboss-as-distribution-6.1.0.Final.zip
+rm jboss-as-distribution-6.1.0.Final.zip
+
+mv jboss-6.1.0.Final jboss
+
+chmod 755 jboss/bin/run.sh
