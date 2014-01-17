@@ -34,23 +34,23 @@ Endpoints:
         Backend:       ""
         Options:       { websockets: false }
   - Private-IP-Name:   IP
-    Private-Port: 8009
+    Private-Port: 15001
     Private-Port-Name:  INTERNAL_AJP_PORT
   - Private-IP-Name:   IP
-    Private-Port: 3873
+    Private-Port: 15002
     Private-Port-Name:  INTERNAL_EJB3_PORT
   - Private-IP-Name:   IP
-    Private-Port: 1090
+    Private-Port: 15003
     Private-Port-Name:  INTERNAL_RMIJRMP_PORT
   - Private-IP-Name:   IP
-    Private-Port: 1098
+    Private-Port: 15004
     Private-Port-Name:  INTERNAL_RMI_PORT
   - Private-IP-Name:   IP
-    Private-Port: 4446
+    Private-Port: 15005
     Private-Port-Name:  INTERNAL_JBOSS_REMOTING_PORT
   - Private-IP-Name:   IP
-    Private-Port: 5455
+    Private-Port: 15006
     Private-Port-Name:  INTERNAL_HORNETQ_PORT
   - Private-IP-Name:   IP
-    Private-Port: 8083
+    Private-Port: 15007
     Private-Port-Name:  INTERNAL_REMOTE_CLASSLOADING_PORT
