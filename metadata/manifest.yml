@@ -54,3 +54,9 @@ Endpoints:
   - Private-IP-Name:   IP
     Private-Port: 15007
     Private-Port-Name:  INTERNAL_REMOTE_CLASSLOADING_PORT
+  - Private-IP-Name:   IP
+    Private-Port: 4712
+    Private-Port-Name:  INTERNAL_RECOVERYMANAGER_PORT
+  - Private-IP-Name:   IP
+    Private-Port: 4713
+    Private-Port-Name:  INTERNAL_TRANSACTIONMANAGER_PORT
