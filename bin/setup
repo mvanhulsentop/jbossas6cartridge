@@ -33,7 +33,7 @@ sed -i "s/4446/$OPENSHIFT_JBOSSAS6_INTERNAL_JBOSS_REMOTING_PORT/g" $OPENSHIFT_JB
 sed -i "s/5455/$OPENSHIFT_JBOSSAS6_INTERNAL_HORNETQ_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
 sed -i "s/8083/$OPENSHIFT_JBOSSAS6_INTERNAL_REMOTE_CLASSLOADING_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
 sed -i "s/4712/$OPENSHIFT_JBOSSAS6_INTERNAL_RECOVERYMANAGER_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
-sed -i "s/4713/$OPENSHIFT_JBOSSAS6_INTERNAL_INTERNAL_TRANSACTIONMANAGER_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
+sed -i "s/4713/$OPENSHIFT_JBOSSAS6_INTERNAL_TRANSACTIONMANAGER_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
 
 # Update ejb3 connectors
 sed -i "s/3873/$OPENSHIFT_JBOSSAS6_INTERNAL_EJB3_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/ejb3-connectors-jboss-beans.xml
