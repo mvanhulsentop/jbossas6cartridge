@@ -63,3 +63,6 @@ Endpoints:
   - Private-IP-Name:   IP_LOCAL
     Private-Port: 4714
     Private-Port-Name:  INTERNAL_TRANSACTIONPROCES_PORT
+  - Private-IP-Name:   IP
+    Private-Port: 4714
+    Private-Port-Name:  INTERNAL_TRANSACTIONPROCES_PORT
