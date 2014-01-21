@@ -72,6 +72,3 @@ Endpoints:
   - Private-IP-Name:   IP
     Private-Port: 4715
     Private-Port-Name:  INTERNAL_TRANSACTIONPROCES2_PORT
-  - Private-IP: 127.0.0.1
-    Private-Port: 4715
-    Private-Port-Name:  INTERNAL_TRANSACTIONPROCES3_PORT
