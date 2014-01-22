@@ -27,7 +27,7 @@ sed -i "s/\${jboss.bind.address}/$OPENSHIFT_JBOSSAS6_IP/1" $OPENSHIFT_JBOSSAS6_D
 
 # Update transaction-jboss-beans
 # and put the following line at line 74
-sed sed "74a <property name=\"processImplementation\">com.arjuna.ats.internal.arjuna.utils.ExecProcessId</property>" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/transaction-jboss-beans.xml
+sed "74a <property name=\"processImplementation\">com.arjuna.ats.internal.arjuna.utils.ExecProcessId</property>"$OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/transaction-jboss-beans.xml
 # Update binding service beans
 sed -i "s/8009/$OPENSHIFT_JBOSSAS6_INTERNAL_AJP_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
 sed -i "s/1090/$OPENSHIFT_JBOSSAS6_INTERNAL_RMIJRMP_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
