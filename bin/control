@@ -9,11 +9,12 @@ function start {
 }
 
 function stop {
-    /usr/sbin/httpd -f $OPENSHIFT_JBOSSAS6_DIR/etc/httpd.conf -k stop
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP &
 }
 
 function restart {
-    /usr/sbin/httpd -f $OPENSHIFT_JBOSSAS6_DIR/etc/httpd.conf -k restart
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh
 }
 
 function catchall {

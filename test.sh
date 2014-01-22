@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 export OPENSHIFT_JBOSSAS6_DIR=../testrun
 export OPENSHIFT_JBOSSAS6_HTTP_PORT=8070
@@ -15,7 +15,7 @@ export OPENSHIFT_CARTRIDGE_SDK_BASH=/home/ec2-user/origin-server-master/node/mis
 echo Using $OPENSHIFT_JBOSSAS6_DIR as test dir
 
 echo Wait for shutdown
-killall java
+killall java &
 sleep 5
 
 rm -rf $OPENSHIFT_JBOSSAS6_DIR
