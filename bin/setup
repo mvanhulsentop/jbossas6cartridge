@@ -58,3 +58,5 @@ sed -i "s/4714/$OPENSHIFT_JBOSSAS6_INTERNAL_TRANSACTIONPROCES_PORT/g" $OPENSHIFT
 # Update ejb3 connectors
 echo ==== Updating ejb3-connectors-jboss-beans.xml
 sed -i "s/3873/$OPENSHIFT_JBOSSAS6_INTERNAL_EJB3_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/ejb3-connectors-jboss-beans.xml
+
+echo APP_INFO: Started
