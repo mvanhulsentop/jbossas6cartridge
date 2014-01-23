@@ -14,9 +14,16 @@ Categories:
 Provides:
   - jbossas6
 Cart-Data:
-  - Key: OPENSHIFT_JBOSSAS6
-    Type: environment
-    Description: "An example environment variable using ERB processing"
+Cart-Data:
+- Key: username
+  Type: cart_data
+  Description: Admin user on JBosse
+- Key: password
+  Type: cart_data
+  Description: Password for admin user on JBoss 
+Scaling:
+  Min: 1
+  Max: 3
 Group-Overrides:
   - components:
     - httpd
