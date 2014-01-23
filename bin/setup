@@ -1,37 +1,49 @@
 #!/bin/bash -e
 
-echo Setup in $OPENSHIFT_JBOSSAS6_DIR
+echo == Setup in $OPENSHIFT_JBOSSAS6_DIR
 cd $OPENSHIFT_JBOSSAS6_DIR
 
-echo Downloading jboss-6.1.0.Final
+echo == Downloading jboss-6.1.0.Final
 if [ -f $OPENSHIFT_JBOSSAS6_DIR/../jboss-as-distribution-6.1.0.Final.zip ]; then
   cp $OPENSHIFT_JBOSSAS6_DIR/../jboss-as-distribution-6.1.0.Final.zip $OPENSHIFT_JBOSSAS6_DIR;
 else
   wget http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip;
 fi
 
-
+echo == Unzipping JBoss
 unzip -q jboss-as-distribution-6.1.0.Final.zip
 rm jboss-as-distribution-6.1.0.Final.zip
-
 mv jboss-6.1.0.Final jboss
 
+echo == Setting permissions
 chmod 755 jboss/bin/run.sh
 chmod 755 jboss/bin/shutdown.sh
 
+echo == Cleaning install
+# Remove unused configurations
+rm -r $OPENSHIFT_JBOSSAS6_DIR/jboss/server/all
+rm -r $OPENSHIFT_JBOSSAS6_DIR/jboss/server/jbossweb-standalone
+rm -r $OPENSHIFT_JBOSSAS6_DIR/jboss/server/minimal
+rm -r $OPENSHIFT_JBOSSAS6_DIR/jboss/server/standard
+
+echo == Updating configuration
+echo ==== Updating server.xml
 # server.xml location:
 # vars; jboss.web.http.port
 # vars; jboss.bind.address
 sed -i "s/\${jboss.web.http.port}/$OPENSHIFT_JBOSSAS6_HTTP_PORT/1" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/jbossweb.sar/server.xml
 sed -i "s/\${jboss.bind.address}/$OPENSHIFT_JBOSSAS6_IP/1" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/jbossweb.sar/server.xml
 
+echo ==== Updating transaction-jboss-beans.xml
 # Update transaction-jboss-beans
 # and put the following line at line 74
 sed -i "74a <property name=\"processImplementation\">com.arjuna.ats.internal.arjuna.utils.ExecProcessId</property>" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/transaction-jboss-beans.xml
+echo ==== Updating stack-agnostic-jboss-beans.xml
 sed -i "72i -->" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deployers/jbossws.deployer/META-INF/stack-agnostic-jboss-beans.xml
 sed -i "63i <!--" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deployers/jbossws.deployer/META-INF/stack-agnostic-jboss-beans.xml
 
 # Update binding service beans
+echo ==== Updating bindings-jboss-beans.xml
 sed -i "s/8009/$OPENSHIFT_JBOSSAS6_INTERNAL_AJP_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
 sed -i "s/1090/$OPENSHIFT_JBOSSAS6_INTERNAL_RMIJRMP_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
 sed -i "s/1098/$OPENSHIFT_JBOSSAS6_INTERNAL_RMI_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
@@ -43,4 +55,5 @@ sed -i "s/4713/$OPENSHIFT_JBOSSAS6_INTERNAL_TRANSACTIONMANAGER_PORT/g" $OPENSHIF
 sed -i "s/4714/$OPENSHIFT_JBOSSAS6_INTERNAL_TRANSACTIONPROCES_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/bindingservice.beans/META-INF/bindings-jboss-beans.xml
 
 # Update ejb3 connectors
+echo ==== Updating ejb3-connectors-jboss-beans.xml
 sed -i "s/3873/$OPENSHIFT_JBOSSAS6_INTERNAL_EJB3_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/ejb3-connectors-jboss-beans.xml
