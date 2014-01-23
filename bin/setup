@@ -38,6 +38,7 @@ echo ==== Updating transaction-jboss-beans.xml
 # Update transaction-jboss-beans
 # and put the following line at line 74
 sed -i "74a <property name=\"processImplementation\">com.arjuna.ats.internal.arjuna.utils.ExecProcessId</property>" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/transaction-jboss-beans.xml
+
 echo ==== Updating stack-agnostic-jboss-beans.xml
 sed -i "72i -->" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deployers/jbossws.deployer/META-INF/stack-agnostic-jboss-beans.xml
 sed -i "63i <!--" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deployers/jbossws.deployer/META-INF/stack-agnostic-jboss-beans.xml

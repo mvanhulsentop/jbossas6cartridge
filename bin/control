@@ -9,12 +9,13 @@ function start {
 }
 
 function stop {
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP &
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh --host=$OPENSHIFT_JBOSSAS6_IP
 }
 
 function restart {
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh --host=$OPENSHIFT_JBOSSAS6_IP
+    sleep 5
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP &
 }
 
 function catchall {
