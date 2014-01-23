@@ -5,7 +5,7 @@ PATH=/bin/:/usr/bin:$PATH
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 function start {
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP &
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP -Djboss.server.log.dir=OPENSHIFT_JBOSSAS6_DIR/logs/ -Djboss.boot.server.log.dir=OPENSHIFT_JBOSSAS6_DIR/logs/ &
 }
 
 function stop {
@@ -13,9 +13,9 @@ function stop {
 }
 
 function restart {
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh --host=$OPENSHIFT_JBOSSAS6_IP
+    stop
     sleep 5
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP &
+    start
 }
 
 function catchall {
