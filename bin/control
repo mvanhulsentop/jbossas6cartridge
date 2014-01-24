@@ -4,6 +4,7 @@ PATH=/bin/:/usr/bin:$PATH
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+
 function start {
     $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP -Djboss.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ -Djboss.boot.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ &
 }
@@ -18,8 +19,27 @@ function restart {
     start
 }
 
+function deploy() {
+  echo "Deploying to JBoss"
+
+  JBOSSAS_DEPLOYMENT_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/deploy
+  # if repo/deploy has any files in it, sync them to $JBOSSAS_DEPLOYMENTS_DIR
+  # and delete any files in $JBOSSAS_DEPLOYMENTS_DIR that don't exist in
+  # repo/deploy
+  if [ "$(ls ${OPENSHIFT_REPO_DIR}/deploy 2>/dev/null)" ]; then
+    rsync -r --delete --exclude ".*" ${OPENSHIFT_REPO_DIR}/deploy/ $JBOSSAS_DEPLOYMENTS_DIR
+  fi
+}
+
+# Clean up any log files
+function tidy() {
+  client_message "Emptying log dir: $OPENSHIFT_JBOSSAS6_LOG_DIR"
+  shopt -s dotglob
+  rm -rf $OPENSHIFT_JBOSSAS6_LOG_DIR/*
+}
+
 function catchall {
-    echo "not yet implemented"
+    echo "$1: not yet implemented"
 }
 
 case "$1" in
@@ -27,11 +47,11 @@ case "$1" in
   stop)        stop ;;
   restart)     restart ;;
   status)      status ;;
-  reload)      catchall ;;
-  tidy)        catchall ;;
+  deploy)      deploy ;;
+  reload)      restart ;;
+  tidy)        tidy ;;
   pre-build)   catchall ;;
   build)       catchall ;;
-  deploy)      catchall ;;
   post-deploy) catchall ;;
   *)           exit 0
 esac
