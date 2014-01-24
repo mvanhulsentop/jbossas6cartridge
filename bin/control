@@ -27,7 +27,7 @@ function deploy() {
   # and delete any files in $JBOSSAS_DEPLOYMENTS_DIR that don't exist in
   # repo/deploy
   if [ "$(ls ${OPENSHIFT_REPO_DIR}/deploy 2>/dev/null)" ]; then
-    rsync -r --delete --exclude ".*" ${OPENSHIFT_REPO_DIR}/deploy/ $JBOSSAS_DEPLOYMENTS_DIR
+    cp ${OPENSHIFT_REPO_DIR}/deploy/ $JBOSSAS_DEPLOYMENT_DIR
   fi
 }
 
