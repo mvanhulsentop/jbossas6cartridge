@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+ADMIN_USER=admin
+ADMIN_PASSWORD=admin
+
 echo == Setup in $OPENSHIFT_JBOSSAS6_DIR
 cd $OPENSHIFT_JBOSSAS6_DIR
 
@@ -60,3 +63,13 @@ echo ==== Updating ejb3-connectors-jboss-beans.xml
 sed -i "s/3873/$OPENSHIFT_JBOSSAS6_INTERNAL_EJB3_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/ejb3-connectors-jboss-beans.xml
 
 echo APP_INFO: Started
+client_result ""
+client_result "JBossAS 6.1.0-final Installed."
+client_result ""
+client_result "   Admin User: ${ADMIN_USER}"
+client_result "   Admin Password: ${ADMIN_PASSWORD}"
+client_result ""
+
+cart_props "admin_username=${ADMIN_USER}"
+cart_props "admin_password=${ADMIN_PASSWORD}"
+
