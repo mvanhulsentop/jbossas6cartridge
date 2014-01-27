@@ -3,10 +3,10 @@ Cartridge-Short-Name: JBossAS6
 Display-Name: JBossAS6 Cartridge
 Source-Url: https://github.com/mvanhulsentop/testcart.git
 Description: "A Jboss Application Server 6.1.0-Final cartridge for development use only."
-Version: '0.1'
+Version: '0.2'
 License: "None"
 Vendor: Maarten van Hulsentop
-Cartridge-Version: 0.0.1
+Cartridge-Version: 0.2.0
 Cartridge-Vendor: mvanhulsentop
 Categories:
   - service
