@@ -4,6 +4,9 @@ PATH=/bin/:/usr/bin:$PATH
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+JBOSSAS_DEPLOYMENT_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/deploy
+JBOSSAS_CONFIG_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/conf
+JBOSSAS_LIB_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/lib
 
 function start {
     $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP -Djboss.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ -Djboss.boot.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ &
@@ -20,14 +23,24 @@ function restart {
 }
 
 function deploy() {
-  echo "Deploying to JBoss"
+  client_debug "Deploying to JBoss"
 
-  JBOSSAS_DEPLOYMENT_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/deploy
-  # if repo/deploy has any files in it, sync them to $JBOSSAS_DEPLOYMENTS_DIR
-  # and delete any files in $JBOSSAS_DEPLOYMENTS_DIR that don't exist in
-  # repo/deploy
+  # if repo/deploy has any files in it, copy them to $JBOSSAS_DEPLOYMENTS_DIR
+  #   deleting is not supported yet.
   if [ "$(ls ${OPENSHIFT_REPO_DIR}/deploy 2>/dev/null)" ]; then
     cp ${OPENSHIFT_REPO_DIR}deploy/* $JBOSSAS_DEPLOYMENT_DIR
+  fi
+
+  # if repo/conf has any files in it, copy them to $JBOSSAS_CONF_DIR
+  #   deleting is not supported yet.
+  if [ "$(ls ${OPENSHIFT_REPO_DIR}/conf 2>/dev/null)" ]; then
+    cp ${OPENSHIFT_REPO_DIR}conf/* $JBOSSAS_CONF_DIR
+  fi
+
+  # if repo/lib has any files in it, copy them to $JBOSSAS_LIB_DIR
+  #   deleting is not supported yet.
+  if [ "$(ls ${OPENSHIFT_REPO_DIR}/lib 2>/dev/null)" ]; then
+    cp ${OPENSHIFT_REPO_DIR}lib/* $JBOSSAS_LIB_DIR
   fi
 }
 
@@ -39,7 +52,7 @@ function tidy() {
 }
 
 function catchall {
-    echo "$1: not yet implemented"
+    client_debug "$1: not yet implemented"
 }
 
 case "$1" in
