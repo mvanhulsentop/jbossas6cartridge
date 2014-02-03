@@ -1,7 +1,7 @@
 Name: jbossas6
 Cartridge-Short-Name: JBossAS6
 Display-Name: JBossAS6 Cartridge
-Source-Url: https://github.com/mvanhulsentop/testcart.git
+Source-Url: https://github.com/mvanhulsentop/jbossas6cartridge.git
 Description: "A Jboss Application Server 6.1.0-Final cartridge for development use only."
 Version: '0.2'
 License: "None"
@@ -26,7 +26,7 @@ Scaling:
   Max: 3
 Group-Overrides:
   - components:
-    - httpd
+    - web_proxy
 Subscribes:
   set-db-connection-info:
     Type: "NET_TCP:db:connection-info"
@@ -52,6 +52,9 @@ Endpoints:
   - Private-IP-Name:   IP
     Private-Port: 1098
     Private-Port-Name:  INTERNAL_RMI_PORT
+  - Private-IP-Name:   IP
+    Private-Port: 1099
+    Private-Port-Name:  INTERNAL_NAMING_PORT
   - Private-IP-Name:   IP
     Private-Port: 4446
     Private-Port-Name:  INTERNAL_JBOSS_REMOTING_PORT
