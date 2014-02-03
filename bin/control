@@ -4,9 +4,10 @@ PATH=/bin/:/usr/bin:$PATH
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-JBOSSAS_DEPLOYMENT_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/deploy
-JBOSSAS_CONF_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/conf
-JBOSSAS_LIB_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default/lib
+JBOSSAS_INSTANCE_DIR=${OPENSHIFT_JBOSSAS6_DIR}/jboss/server/default
+JBOSSAS_DEPLOYMENT_DIR=${JBOSSAS_INSTANCE_DIR}/deploy
+JBOSSAS_CONF_DIR=${JBOSSAS_INSTANCE_DIR}/conf
+JBOSSAS_LIB_DIR=${JBOSSAS_INSTANCE_DIR}/lib
 
 function start {
     $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP -Djboss.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ -Djboss.boot.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ &
@@ -41,6 +42,12 @@ function deploy() {
   #   deleting is not supported yet.
   if [ "$(ls ${OPENSHIFT_REPO_DIR}/lib 2>/dev/null)" ]; then
     cp ${OPENSHIFT_REPO_DIR}lib/* $JBOSSAS_LIB_DIR
+  fi
+
+  # if repo/ROOT has any files in it, copy them to $JBOSSAS_INSTANCE_DIR
+  #   deleting is not supported yet.
+  if [ "$(ls ${OPENSHIFT_REPO_DIR}/ROOT 2>/dev/null)" ]; then
+    cp -R ${OPENSHIFT_REPO_DIR}/ROOT/* $JBOSSAS_INSTANCE_DIR
   fi
 }
 
