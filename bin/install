@@ -12,7 +12,7 @@ echo == Downloading jboss-6.1.0.Final
 if [ -f $OPENSHIFT_JBOSSAS6_DIR/../jboss-as-distribution-6.1.0.Final.zip ]; then
   cp $OPENSHIFT_JBOSSAS6_DIR/../jboss-as-distribution-6.1.0.Final.zip $OPENSHIFT_JBOSSAS6_DIR;
 else
-  wget http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip;
+  wget -q http://download.jboss.org/jbossas/6.1/jboss-as-distribution-6.1.0.Final.zip;
 fi
 
 echo == Unzipping JBoss
