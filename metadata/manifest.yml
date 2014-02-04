@@ -2,7 +2,7 @@ Name: jbossas6
 Cartridge-Short-Name: JBossAS6
 Display-Name: JBossAS6 Cartridge
 Source-Url: https://github.com/mvanhulsentop/jbossas6cartridge.git
-Description: "A Jboss Application Server 6.1.0-Final cartridge for development use only."
+Description: "A Jboss Application Server 6.1.0-Final cartridge for development use only. This can be used to deploy ears and wars."
 Version: '0.2'
 License: "None"
 Vendor: Maarten van Hulsentop
