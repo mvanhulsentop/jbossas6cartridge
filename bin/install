@@ -66,8 +66,8 @@ echo ==== Updating ejb3-connectors-jboss-beans.xml
 sed -i "s/3873/$OPENSHIFT_JBOSSAS6_INTERNAL_EJB3_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/ejb3-connectors-jboss-beans.xml
 
 # Update JNDI.properties
-echo ==== Updating jndi.properties
-echo java.naming.provider.url=$OPENSHIFT_JBOSSAS6_IP:$OPENSHIFT_JBOSSAS6_INTERNAL_NAMING_PORT >> $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/jndi.properties
+# echo ==== Updating jndi.properties
+# echo java.naming.provider.url=$OPENSHIFT_JBOSSAS6_IP:$OPENSHIFT_JBOSSAS6_INTERNAL_NAMING_PORT >> $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/conf/jndi.properties
 
 echo APP_INFO: Started
 client_result ""
