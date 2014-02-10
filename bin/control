@@ -10,7 +10,7 @@ JBOSSAS_CONF_DIR=${JBOSSAS_INSTANCE_DIR}/conf
 JBOSSAS_LIB_DIR=${JBOSSAS_INSTANCE_DIR}/lib
 
 function start {
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP -Djboss.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ -Djboss.boot.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ &
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP -Djboss.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ -Djboss.boot.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ > $OPENSHIFT_JBOSSAS6_DIR/logs/jbossservice.log &
 }
 
 function stop {
