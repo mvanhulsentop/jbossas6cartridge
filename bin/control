@@ -14,7 +14,7 @@ function start {
 }
 
 function stop {
-    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh --host=$OPENSHIFT_JBOSSAS6_IP
+    $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/shutdown.sh --host=$OPENSHIFT_JBOSSAS6_IP || echo Shutdown failed
 }
 
 function restart {
