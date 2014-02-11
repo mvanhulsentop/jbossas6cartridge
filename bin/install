@@ -66,7 +66,7 @@ echo ==== Updating ejb3-connectors-jboss-beans.xml
 sed -i "s/3873/$OPENSHIFT_JBOSSAS6_INTERNAL_EJB3_PORT/g" $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/ejb3-connectors-jboss-beans.xml
 
 echo === Copy template to location 
-cp $OPENSHIFT_JBOSSAS6_DIR/templates/jboss-service.xml $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/http-invoker.sar/META-INF
+cp $OPENSHIFT_JBOSSAS6_DIR/template/jboss-service.xml $OPENSHIFT_JBOSSAS6_DIR/jboss/server/default/deploy/http-invoker.sar/META-INF
 
 # Update JNDI.properties
 # echo ==== Updating jndi.properties
