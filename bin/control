@@ -10,7 +10,7 @@ JBOSSAS_CONF_DIR=${JBOSSAS_INSTANCE_DIR}/conf
 JBOSSAS_LIB_DIR=${JBOSSAS_INSTANCE_DIR}/lib
 
 function start {
-    set JAVA_OPTS="-Xms128m -Xmx600m -XX:MaxPermSize=400m -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
+    export JAVA_OPTS="-Xms128m -Xmx600m -XX:MaxPermSize=400m -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
     $OPENSHIFT_JBOSSAS6_DIR/jboss/bin/run.sh -b $OPENSHIFT_JBOSSAS6_IP -Djboss.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ -Djboss.boot.server.log.dir=$OPENSHIFT_JBOSSAS6_DIR/logs/ &
 }
 
